@@ -34,7 +34,7 @@ class MarkyMarkov(object):
         cumulative_sum = 0
         self.state_list[key] = []
         self.cdf[key] = []
-        for state, count in self.counts[key].iteritems():
+        for state, count in self.counts[key].items():
             cumulative_sum += count
             self.state_list[key].append(state)
             self.cdf[key].append(cumulative_sum)
@@ -66,7 +66,7 @@ class MarkyMarkov(object):
         result = cls(order, allow_duplicates=allow_duplicates)
         with open(filename) as infile:
             for line in infile:
-                stripped = line.strip().decode('utf8').lower()
+                stripped = line.strip().lower()
                 if stripped:
                     result.add_word(stripped)
         return result
@@ -79,7 +79,7 @@ def ikea():
     for i in range(1000000):
         word = ikea.generate_word()
         if not word in ikea.words and not word in swedish.words:
-            print word.encode('utf8')
+            print(word)
 
 
 def generate():
@@ -94,7 +94,7 @@ def generate():
     while n < 10:
         word = mc.generate_word()
         if not word in mc.words and not word in reference.words:
-            print word.encode('utf8')
+            print(word)
             n += 1
 
 if __name__ == '__main__':
